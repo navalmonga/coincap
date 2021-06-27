@@ -16,7 +16,7 @@ const CoinSummary = () => {
     1000
   )
   return (
-    <GlassPane width="90vw" height="35rem" title={`${localTZ} ${time}`} footer={`© ${new Date().getFullYear()} COINCAP`}>
+    <GlassPane width="90vw" height="59.5vh" title={`${localTZ} ${time}`} footer={`© ${new Date().getFullYear()} COINCAP`}>
       <AddCoin />
       <CoinList watchListLocal={watchList} />
     </GlassPane>

@@ -50,10 +50,11 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
 
 export const ButtonDropdown = styled.div`
   display: none;
-  z-index: 99;
+  z-index: 100;
   position: absolute;
   left: 2rem;
   top: 2rem;
+  overflow-y: scroll;
   background-color: #f9f9f9;
   min-width: 455px;
   min-height: 10rem;
