@@ -47,16 +47,24 @@ export const ItemTitle = styled.h6`
   display: flex;
   align-items: center;
   flex-direction: row;
+  height: 100%;
+  div {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+    .coinLogo {
+      max-height: 36px;
+      width: 36px;
+      margin-bottom: 16px;
+      flex: 0.2;
+      object-fit: contain;
+    }
+  }
   span {
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 400;
-  }
-  img{
-    height: 32px;
-    width: auto;
-    flex: 0.2;
-    object-fit: contain;
   }
 `;
 

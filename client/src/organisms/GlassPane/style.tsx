@@ -51,7 +51,9 @@ export const StyledTitle = styled.h3<{ pushDown?:boolean; fontSize?:number; }>`
     ''}
   ${props => props.pushDown? 
   `
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: fixed;
     bottom: 1rem;
   `: 

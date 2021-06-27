@@ -42,7 +42,7 @@ const CoinList = (props: ListProps) => {
       )}
       <Currency current={curr} setCurrent={setCurr} />
       {!loading && Object.keys(coins).length > 1 && (
-        Object.keys(coins).map((ticker: any) => {
+        Object.keys(coins).sort().map((ticker: any) => {
           return (
             <CoinListItem key={ticker} item={coins[ticker]} name={ticker} symbol={ticker} currency={curr} />
           )

@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${Theme.layout.backgroundColor};
     color: #ffffff;
     scroll-behavior: smooth;
-    border-width: 2px;
+    border-width: 4px;
     border-style: solid;
     border-image-slice: 1;
     border-image-source: ${Theme.gradients.primary};
@@ -38,7 +38,6 @@ const GlobalStyle = createGlobalStyle`
     transition: all 0.18s linear;
     .grow:hover {
       cursor: pointer;
-      transform: scale(1.05) !important;
     }
   }
   span {
@@ -50,8 +49,6 @@ const GlobalStyle = createGlobalStyle`
     transition: all 0.18s linear;
     &:hover {
       cursor: pointer;
-      display: block;
-      transform: scale(1.05) !important;
     }
   }
 `

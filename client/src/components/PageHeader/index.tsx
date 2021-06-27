@@ -12,8 +12,9 @@ const PageHeader = (props: HeaderProps) => {
   return (
     <StyledHeader>
       <LoginButton href="/">login</LoginButton>
+      <img src="/noun-vector.svg" alt="coincap svg" height="55px" />
       <Link to="/">
-      <StyledTitle>{titleParts[0]}<span>{titleParts[1]}</span></StyledTitle>
+        <StyledTitle>{titleParts[0]}<span>{titleParts[1]}</span></StyledTitle>
       </Link>
     </StyledHeader>
   );

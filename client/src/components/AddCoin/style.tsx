@@ -21,6 +21,7 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
     // box-shadow: inset 0 0 20px rgba(255,255,255,0.2);
     background-position: -10rem -10rem; /* change the direction of the change here */
     color: #fff;
+    cursor: pointer;
     div {
       display: flex;
     }
@@ -51,17 +52,14 @@ export const ButtonDropdown = styled.div`
   display: none;
   z-index: 99;
   position: absolute;
-  margin-left: 4rem;
-  margin-top: 25rem;
+  left: 2rem;
+  top: 2rem;
   background-color: #f9f9f9;
-  min-width: 225px;
+  min-width: 455px;
   min-height: 10rem;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-radius: 0.25rem;
   flex-direction: column;
-  &:hover {
-    display: flex;
-  }
 `;
 
 export const DropdownButton = styled.button`
@@ -69,7 +67,19 @@ export const DropdownButton = styled.button`
   color: #111111;
   padding: 1rem;
   text-align: left;
+  display: flex;
   &:hover {
     background-color: #e8e8e8;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1) !important;
+  }
+  img {
+    flex: 0.2;
+    height: 22px;
+    width: 22px;
+    margin: 0 15px;
   }
 `;

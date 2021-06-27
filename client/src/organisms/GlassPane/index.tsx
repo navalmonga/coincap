@@ -15,7 +15,11 @@ const GlassPane = (props: PaneProps) => {
     <StyledPane width={width} height={height}>
       <StyledTitle>{title}</StyledTitle>
       {children}
-      <StyledTitle pushDown={true}>{footer}</StyledTitle>
+      <StyledTitle pushDown={true}>
+        <span>{footer} | <a href="https://www.coingecko.com/en/api" aria-label="coingecko english api" target="_blank">data source</a></span>
+        <br/>
+        <a href="https://navalm.com" aria-label="navalm" target="_blank">navalm.com</a>
+      </StyledTitle>
     </StyledPane>
   );
 }

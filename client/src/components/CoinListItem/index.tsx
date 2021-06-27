@@ -4,11 +4,17 @@ import { StyledItem, ItemTicker, ItemTitle, MarketCap, DeleteIcon } from './styl
 import { StyledButton } from '../AddCoin/style';
 import { WatchListContext } from '../../contexts/watchListContext';
 import moment from 'moment';
+import coinImgMap from '../../constants/coinImg';
 
-const symbolMap = new Map([['bitcoin', '₿'],
+const symbolMap = new Map([['binancecoin', 'BNB'],
+                           ['bitcoin', '₿'],
+                           ['bitcoin-cash', 'BCH'],
                            ['ethereum', 'Ξ'],
+                           ['cardano', 'ADA'],
                            ['dogecoin', 'DOGE'],
                            ['the-graph', 'GRT'],
+                           ['tether', '₮'],
+                           ['ripple', 'XRP'],
                           ]);
 
 const homepageMap = new Map([['bitcoin', 'https://bitcoin.org'], 
@@ -19,16 +25,7 @@ const homepageMap = new Map([['bitcoin', 'https://bitcoin.org'],
                             ['cardano', 'https://cardano.org'],
                             ['polkadot', 'https://polkadot.network'],
                             ['bitcoin cash', 'https://bitcoincash.org'],
-                            ['dogecoin', 'https://dogecoin.com']]);
-
-const imgMap = new Map([['bitcoin', 'https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg'], 
-                            ['ethereum', 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Ethereum_Classic_Logo.svg'],
-                            ['tether', 'https://cryptologos.cc/logos/tether-usdt-logo.svg?v=009'],
-                            ['xrp', 'https://ripplex.io/assets/images/home-hero-ripplex.svg'],
-                            ['litecoin', undefined],
-                            ['dogecoin', 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d0/Dogecoin_Logo.png/150px-Dogecoin_Logo.png'],
-                            ['the-graph', 'https://cryptologos.cc/logos/the-graph-grt-logo.svg?v=010'],
-                            ['bitcoincash', undefined]]);                            
+                            ['dogecoin', 'https://dogecoin.com']]);                          
 
 export type ListItemProps = {
   item: any,
@@ -65,8 +62,10 @@ const CoinListItem = (props: ListItemProps) => {
         <span id="last24">(LAST 24 HOURS)</span>
       </ItemTicker>
       <ItemTitle>
-        <img src={imgMap.get(name.toLowerCase())?imgMap.get(name.toLowerCase()):'/'} alt={name} />&nbsp;
-        {name.toUpperCase()}<br/>
+        <div>
+          <img className="coinLogo" src={coinImgMap.get(name.toLowerCase())?coinImgMap.get(name.toLowerCase()):'/'} alt={name} />
+          <br/>{name.toUpperCase()}<br/>
+        </div>
       </ItemTitle>
       <ItemTitle>
         <div>
