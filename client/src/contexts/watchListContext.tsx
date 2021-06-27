@@ -16,6 +16,7 @@ export const WatchListContextProvider = (props: any) => {
       'bitcoin',
       'ethereum',
       'dogecoin',
+      'the-graph',
     ]
   );
   useEffect(() => {

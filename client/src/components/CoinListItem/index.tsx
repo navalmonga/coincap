@@ -8,6 +8,7 @@ import moment from 'moment';
 const symbolMap = new Map([['bitcoin', '₿'],
                            ['ethereum', 'Ξ'],
                            ['dogecoin', 'DOGE'],
+                           ['the-graph', 'GRT'],
                           ]);
 
 const homepageMap = new Map([['bitcoin', 'https://bitcoin.org'], 
@@ -26,6 +27,7 @@ const imgMap = new Map([['bitcoin', 'https://upload.wikimedia.org/wikipedia/comm
                             ['xrp', 'https://ripplex.io/assets/images/home-hero-ripplex.svg'],
                             ['litecoin', undefined],
                             ['dogecoin', 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d0/Dogecoin_Logo.png/150px-Dogecoin_Logo.png'],
+                            ['the-graph', 'https://cryptologos.cc/logos/the-graph-grt-logo.svg?v=010'],
                             ['bitcoincash', undefined]]);                            
 
 export type ListItemProps = {
@@ -57,7 +59,10 @@ const CoinListItem = (props: ListItemProps) => {
     <StyledItem to="/">
       <ItemTicker delta={item? item.usd_24h_change >= 0: false}>
         <span>{symbolMap.get(name) ?? '---'}</span>&nbsp;  
-        <br/><br/>{item && item.usd_24h_change < 0 ? <span>&darr;</span>: <span>&uarr;</span>}&nbsp;{String(item? item.usd_24h_change: 0)}%
+        <br/><br/>{String(item? item.usd_24h_change.toFixed(2): 0)}%&nbsp;
+       {item && item.usd_24h_change.toFixed(2) < 0 ? <span>&#8601;</span>: <span>&#8599;</span>}
+        <br/>
+        <span id="last24">(LAST 24 HOURS)</span>
       </ItemTicker>
       <ItemTitle>
         <img src={imgMap.get(name.toLowerCase())?imgMap.get(name.toLowerCase()):'/'} alt={name} />&nbsp;
@@ -65,7 +70,7 @@ const CoinListItem = (props: ListItemProps) => {
       </ItemTitle>
       <ItemTitle>
         <div>
-          <p>{currency.symbol} {item? item.usd: 0} {currency.id.toUpperCase()}</p>
+          <p>{currency.symbol} {item? item.usd.toFixed(3): 0} {currency.id.toUpperCase()}</p>
           <span>updated&nbsp;{moment.unix(item? item.last_updated_at: undefined).fromNow()}</span>
         </div>
       </ItemTitle>

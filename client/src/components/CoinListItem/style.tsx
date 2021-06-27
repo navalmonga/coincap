@@ -27,6 +27,12 @@ export const ItemTicker = styled.h6<{ delta: boolean }>`
   span {
     font-size: 24px;
   }
+  #last24{
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
   flex: 0.4;
   ${props => props.delta ? `
     color: ${Theme.palette.success};
