@@ -1,6 +1,11 @@
-import React from 'react';
 import styled from 'styled-components';
 import Theme from '../../styles/theme';
+
+// import styled from 'styled-components';
+
+// export const StyledExample = styled.div`
+//   text-align: center;
+// `;
 
 export const StyledPane = styled.div<{ width?: string, height?: string }>`
   width: ${props => props.width} !important;

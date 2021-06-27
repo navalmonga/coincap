@@ -24,4 +24,22 @@ const GlassPane = (props: PaneProps) => {
   );
 }
 
+// import React from 'react';
+// import { StyledExample } from './style';
+
+// export type ExampleProps = {
+//   title: string,
+// }
+
+// const ExampleFuncComp = (props: ExampleProps) => {
+//   const { title } = props;
+//   return (
+//     <StyledExample>
+//       {title}
+//     </StyledExample>
+//   );
+// }
+
+// export default ExampleFunComp;
+
 export default GlassPane;
