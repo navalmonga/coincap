@@ -5,7 +5,7 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 8rem;
+  width: 10rem;
   min-height: 2.5rem;
   font-family: ${Theme.fonts.base};
   font-size: 14px;
@@ -13,13 +13,13 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
   letter-spacing: 1px;
   text-transform: uppercase;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background-repeat: repeat-x;
+  background-repeat: repeat;
   color: ${Theme.layout.primaryColor};
   transition: all 0.18s linear;
   border-radius: 4rem;
   &:hover {
     // box-shadow: inset 0 0 20px rgba(255,255,255,0.2);
-    background-position: -8rem 0; /* change the direction of the change here */
+    background-position: -10rem -10rem; /* change the direction of the change here */
     color: #fff;
     div {
       display: flex;
@@ -49,16 +49,19 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
 
 export const ButtonDropdown = styled.div`
   display: none;
-  z-index: 2;
+  z-index: 99;
   position: absolute;
   margin-left: 4rem;
-  margin-top: 24rem;
+  margin-top: 25rem;
   background-color: #f9f9f9;
   min-width: 225px;
   min-height: 10rem;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-radius: 0.25rem;
   flex-direction: column;
+  &:hover {
+    display: flex;
+  }
 `;
 
 export const DropdownButton = styled.button`

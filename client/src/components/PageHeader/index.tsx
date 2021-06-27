@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { StyledHeader, StyledTitle, LoginButton } from './style';
 
 export type HeaderProps = {
@@ -11,7 +12,9 @@ const PageHeader = (props: HeaderProps) => {
   return (
     <StyledHeader>
       <LoginButton href="/">login</LoginButton>
+      <Link to="/">
       <StyledTitle>{titleParts[0]}<span>{titleParts[1]}</span></StyledTitle>
+      </Link>
     </StyledHeader>
   );
 }

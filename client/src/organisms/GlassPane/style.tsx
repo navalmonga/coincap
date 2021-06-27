@@ -36,11 +36,19 @@ export const StyledPane = styled.div<{ width?: string, height?: string }>`
   scrollbar-width: none;  /* Firefox */
 `;
 
-export const StyledTitle = styled.h3<{ pushDown?:boolean; }>`
+export const StyledTitle = styled.h3<{ pushDown?:boolean; fontSize?:number; }>`
   text-transform: uppercase;
   color: ${Theme.layout.primaryColor};
   font-size: 12px;
   font-weight: 400;
+  ${props => props.fontSize? 
+    `
+      font-size: ${props.fontSize}px;
+      span {
+        font-weight: 700;
+      }
+    `: 
+    ''}
   ${props => props.pushDown? 
   `
     display: block;

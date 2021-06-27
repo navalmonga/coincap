@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Theme from '../../styles/theme';
 
-export const StyledItem = styled.a`
+export const StyledItem = styled(Link)`
   width: 100%;
   max-height: 8rem;
   margin-bottom: 2rem;
@@ -22,19 +23,16 @@ export const StyledItem = styled.a`
 
 export const ItemTicker = styled.h6<{ delta: boolean }>`
   padding-left: 1rem;
-  font-size: 20px;
+  font-size: 18px;
+  span {
+    font-size: 24px;
+  }
   flex: 0.4;
   ${props => props.delta ? `
     color: ${Theme.palette.success};
   `: `
     color: ${Theme.palette.error};
   `}
-  & img{
-    height: 24px;
-    width: auto;
-    flex: 0.2;
-    object-fit: contain;
-  }
 `;
 
 export const ItemTitle = styled.h6`
@@ -42,6 +40,18 @@ export const ItemTitle = styled.h6`
   flex: 0.5;
   display: flex;
   align-items: center;
+  flex-direction: row;
+  span {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  img{
+    height: 32px;
+    width: auto;
+    flex: 0.2;
+    object-fit: contain;
+  }
 `;
 
 export const MarketCap = styled.p`

@@ -15,12 +15,17 @@ const CoinList = (props: ListProps) => {
   const [curr, setCurr] = useState({id: 'usd', symbol: '$'});
   const [coins, setCoins] = useState([]);
   useEffect(() => {
+    console.log(watchListLocal);
     setLoading(true);
     const fetchData = async () => {
-      const response = await CoinGecko.get('/coins/markets/', {
+      const response = await CoinGecko.get('/simple/price', {
         params: {
-          vs_currency: curr.id,
           ids: watchListLocal.join(','),
+          vs_currencies: 'usd',
+          include_market_cap: true,
+          include_24hr_vol: true,
+          include_24hr_change: true,
+          include_last_updated_at: true,
         },
       });
       setCoins(response.data);
@@ -36,12 +41,15 @@ const CoinList = (props: ListProps) => {
         <span>Loading...</span>
       )}
       <Currency current={curr} setCurrent={setCurr} />
-      {!loading && (
-        coins.map((ticker: any) => {
+      {!loading && Object.keys(coins).length > 1 && (
+        Object.keys(coins).map((ticker: any) => {
           return (
-            <CoinListItem key={ticker.symbol} item={ticker} currency={curr} />
+            <CoinListItem key={ticker} item={coins[ticker]} name={ticker} symbol={ticker} currency={curr} />
           )
         })
+      )}
+      {!loading && Object.keys(coins).length === 1 && (
+        <CoinListItem key={watchListLocal[0]} item={coins[watchListLocal[0]]} name={watchListLocal[0]} symbol={watchListLocal[0]} currency={curr} />
       )}
     </StyledList>
   );

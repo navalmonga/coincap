@@ -10,10 +10,11 @@ function App() {
     <>
     <GlobalStyle />
     <div className="App">
-      <Header title="coin cap" />
       <WatchListContextProvider>
         <BrowserRouter>
+          <Header title="coin cap" />
           <Route exact path="/" component={CoinSummary} />
+          <Route path="/coins/:symbol" component={CoinDetail} />
         </BrowserRouter>
       </WatchListContextProvider>
     </div>

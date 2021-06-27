@@ -18,7 +18,7 @@ const Theme: BaseTheme = {
   },
   gradients: {
     primary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    primaryTransparent: 'linear-gradient(135deg, rgba(17,17,17,0.5) 0%, rgba(118,75,162,0.5) 100%)'
+    primaryTransparent: 'linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(17,17,17,0.5) 100%)'
   },
   palette: {
     info: '#cdcdcd',
