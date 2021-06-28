@@ -44,7 +44,7 @@ export const StyledPane = styled.div<{ width?: string, height?: string }>`
 export const StyledTitle = styled.h3<{ pushDown?:boolean; fontSize?:number; }>`
   text-transform: uppercase;
   color: ${Theme.layout.primaryColor};
-  font-size: 12px;
+  font-size: ${Theme.fonts.button};
   font-weight: 400;
   ${props => props.fontSize? 
     `
@@ -61,6 +61,9 @@ export const StyledTitle = styled.h3<{ pushDown?:boolean; fontSize?:number; }>`
     align-items: center;
     position: fixed;
     bottom: 1rem;
+    span a {
+      font-weight: 700;
+    }
   `: 
   ''}
 `;

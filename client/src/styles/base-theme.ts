@@ -6,6 +6,7 @@ export interface BaseTheme {
   };
   fonts: {
     base: string;
+    button: string;
   };
   breakpoints: {
     xs: string;

@@ -15,6 +15,7 @@ const Theme: BaseTheme = {
   },
   fonts: {
     base: `IBM Plex Mono, monospace`,
+    button: '0.8rem',
   },
   gradients: {
     primary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',

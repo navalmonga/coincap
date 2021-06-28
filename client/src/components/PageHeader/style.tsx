@@ -21,5 +21,6 @@ export const LoginButton = styled.a`
   z-index: 2;
   top: 0.75rem;
   right: 1rem;
+  font-size: ${Theme.fonts.button};
   text-transform: uppercase;
 `;

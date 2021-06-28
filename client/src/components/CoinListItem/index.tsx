@@ -51,25 +51,25 @@ const abbreviate_number = (num: any, fixed: any) => {
 
 const CoinListItem = (props: ListItemProps) => {
   const { item, name, symbol, currency } = props;
-  // const { deleteCoin } = useContext(WatchListContext);
+  const { deleteCoin } = useContext(WatchListContext);
   return (
-    <StyledItem to="/">
+    <StyledItem to={`/coin/${symbol}`}>
       <ItemTicker delta={item? item.usd_24h_change >= 0: false}>
         <span>{symbolMap.get(name) ?? '---'}</span>&nbsp;  
         <br/><br/>{String(item? item.usd_24h_change.toFixed(2): 0)}%&nbsp;
        {item && item.usd_24h_change.toFixed(2) < 0 ? <span>&#8601;</span>: <span>&#8599;</span>}
         <br/>
-        <span id="last24">(LAST 24 HOURS)</span>
+        <span id="last24">(LAST 24H)</span>
       </ItemTicker>
       <ItemTitle>
         <div>
-          <img className="coinLogo" src={coinImgMap.get(name.toLowerCase())?coinImgMap.get(name.toLowerCase()):'/'} alt={name} />
-          <br/>{name.toUpperCase()}<br/>
+          <img className="coinLogo" src={coinImgMap.get(name.toLowerCase()) ?? 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg'} alt={name ?? 'loading...'} />
+          <br/>{name.toUpperCase() ?? 'LOADING...'}<br/>
         </div>
       </ItemTitle>
       <ItemTitle>
         <div>
-          <p>{currency.symbol} {item? item.usd.toFixed(3): 0} {currency.id.toUpperCase()}</p>
+          <p>{currency.symbol}{item? item.usd.toFixed(2): 0}</p>
           <span>updated&nbsp;{moment.unix(item? item.last_updated_at: undefined).fromNow()}</span>
         </div>
       </ItemTitle>
@@ -77,7 +77,7 @@ const CoinListItem = (props: ListItemProps) => {
         market cap<br/>
         {currency.symbol}{item? abbreviate_number(item.usd_market_cap, 0) ?? '---': ''}<br/>
         <hr/>
-        volume<br/>
+        volume (24h)<br/>
         {currency.symbol}{item? abbreviate_number(item.usd_24h_vol, 0) ?? '---': ''}
       </MarketCap>
       {/* <MarketCap>
@@ -89,8 +89,7 @@ const CoinListItem = (props: ListItemProps) => {
       <DeleteIcon
         onClick={(e) => {
           e.preventDefault();
-          // deleteCoin(item.id.toLowerCase());
-          console.log('delete');
+          deleteCoin(name.toLowerCase());
         }}
       >&times;</DeleteIcon>
     </StyledItem>

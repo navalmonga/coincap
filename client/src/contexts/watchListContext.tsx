@@ -9,22 +9,18 @@ export const WatchListContext = createContext<WatchListContextData>({watchList: 
 
 export const WatchListContextProvider = (props: any) => {
   const { children } = props;
-  console.log();
   localStorage.clear();
   const [watchList, setWatchList] = useState(
     localStorage.getItem("watchList")?.split(",") || [
       'bitcoin',
-      'binancecoin',
       'ethereum',
-      'cardano',
       'tether',
-      'dogecoin',
-      'the-graph',
+      'dogecoin'
     ]
   );
   useEffect(() => {
     localStorage.setItem("watchList", watchList.join(','));
-  });
+  }, []);
 
   const addCoin = (coin: any) => {
     if (watchList.indexOf(coin) === -1) {

@@ -41,15 +41,12 @@ const CoinList = (props: ListProps) => {
         <span>Loading...</span>
       )}
       <Currency current={curr} setCurrent={setCurr} />
-      {!loading && Object.keys(coins).length > 1 && (
+      {!loading && Object.keys(coins).length > 0 && (
         Object.keys(coins).sort().map((ticker: any) => {
           return (
             <CoinListItem key={ticker} item={coins[ticker]} name={ticker} symbol={ticker} currency={curr} />
           )
         })
-      )}
-      {!loading && Object.keys(coins).length === 1 && (
-        <CoinListItem key={watchListLocal[0]} item={coins[watchListLocal[0]]} name={watchListLocal[0]} symbol={watchListLocal[0]} currency={curr} />
       )}
     </StyledList>
   );

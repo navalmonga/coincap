@@ -51,6 +51,18 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;
     }
   }
+  body::-webkit-scrollbar {
+    width: 4rem;
+  }
+   
+  body::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+   
+  body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    outline: 1px solid #111;
+  }
 `
 
 export default GlobalStyle;
