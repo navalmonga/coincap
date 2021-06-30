@@ -87,7 +87,7 @@ const CoinDetail = () => {
       {!!loading && <div>Loading...</div>}
       {!!!loading && (
         <>
-          <div style={{ height: '30rem', width: '90%' }}>
+          <div style={{ height: '20rem', width: '80%' }}>
             <ParentSize>{({ width, height }: any) => 
               <VisXChart
                 data={coinData}

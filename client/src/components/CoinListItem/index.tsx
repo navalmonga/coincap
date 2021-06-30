@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { StyledItem, ItemTicker, ItemTitle, MarketCap, DeleteIcon } from './style';
+import { StyledItem, ItemTicker, ItemTitle, MarketCap, DeleteIcon, VisContainer } from './style';
 import { StyledButton } from '../AddCoin/style';
 import { WatchListContext } from '../../contexts/watchListContext';
 import moment from 'moment';
 import coinImgMap from '../../constants/coinImg';
+import CoinGecko from '../../apis/CoinGecko';
+import { VisXChart } from '../../organisms';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
 
 const symbolMap = new Map([['binancecoin', 'BNB'],
                            ['bitcoin', '₿'],
@@ -52,21 +55,83 @@ const abbreviate_number = (num: any, fixed: any) => {
 const CoinListItem = (props: ListItemProps) => {
   const { item, name, symbol, currency } = props;
   const { deleteCoin } = useContext(WatchListContext);
+  const [loading, setLoading] = useState(false);
+  const [coinData, setCoinData] = useState({
+    day: [],
+  });
+
+  const formatChartData = (data: any) => {
+    return data.map((e: any) => {
+      return {
+        t: e[0],
+        y: e[1].toFixed(2),
+      };
+    });
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      let coinGecko = CoinGecko;
+
+      const [day] = await Promise.all([
+        coinGecko.get(`/coins/${symbol}/market_chart/`, {
+          params: {
+            vs_currency: 'usd',
+            days: '1',
+          },
+        }),
+      ]);
+
+      setCoinData({
+        day: formatChartData(day.data.prices),
+      });
+
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+
+
   return (
     <StyledItem to={`/coin/${symbol}`}>
       <ItemTicker delta={item? item.usd_24h_change >= 0: false}>
-        <span>{symbolMap.get(name) ?? '---'}</span>&nbsp;  
-        <br/><br/>{String(item? item.usd_24h_change.toFixed(2): 0)}%&nbsp;
-       {item && item.usd_24h_change.toFixed(2) < 0 ? <span>&#8601;</span>: <span>&#8599;</span>}
+        <span className="symbol">
+          {symbolMap.get(name) ?? '---'}
+          <ItemTitle>
+            <img className="coinLogo" src={coinImgMap.get(name.toLowerCase()) ?? 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg'} alt={name ?? 'loading...'} />
+            <h3>{name.toUpperCase() ?? 'LOADING...'}</h3>
+          </ItemTitle>
+        </span>&nbsp;  
+        <br/><br/>
+        <span className="hChange">
+          <span>{String(item? item.usd_24h_change.toFixed(2): 0)}%&nbsp;</span>
+          {item && item.usd_24h_change.toFixed(2) <= 0 ? <span>&#8601;</span>: <span>&#8599;</span>}
+        </span>
         <br/>
-        <span id="last24">(LAST 24H)</span>
+        <span className="last24">
+          (LAST 24H)
+        </span>
       </ItemTicker>
-      <ItemTitle>
-        <div>
-          <img className="coinLogo" src={coinImgMap.get(name.toLowerCase()) ?? 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg'} alt={name ?? 'loading...'} />
-          <br/>{name.toUpperCase() ?? 'LOADING...'}<br/>
-        </div>
-      </ItemTitle>
+      <VisContainer>
+        {!!loading && <div>Loading...</div>}
+        {!!!loading && (
+          <>
+            <div style={{ height: '7rem', width: '100%' }}>
+              <ParentSize>{({ width, height }: any) => 
+                <VisXChart
+                  data={coinData}
+                  width={width}
+                  height={height}
+                />
+              }
+              </ParentSize>
+            </div>
+          </>
+        )}
+      </VisContainer>
       <ItemTitle>
         <div>
           <p>{currency.symbol}{item? item.usd.toFixed(2): 0}</p>

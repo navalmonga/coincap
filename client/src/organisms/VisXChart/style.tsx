@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Theme from '../../styles/theme';
 
 export const ChartContainer = styled.div`
   display: flex;
@@ -14,4 +15,13 @@ export const ChartContainer = styled.div`
   svg {
     margin: 0 auto;
   }
+`;
+
+
+export const StyledSelect = styled.select`
+  padding: 0.5rem 0rem;
+  border-radius: 0.25rem;
+  color: ${Theme.layout.backgroundColor};
+  border: none;
+  margin: 0.25rem 0;
 `;

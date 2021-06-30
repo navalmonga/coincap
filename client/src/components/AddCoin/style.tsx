@@ -5,10 +5,9 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10rem;
-  min-height: 2.5rem;
+  padding: 0.3rem 0.75rem;
   font-family: ${Theme.fonts.base};
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -19,20 +18,21 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
   border-radius: 4rem;
   &:hover {
     // box-shadow: inset 0 0 20px rgba(255,255,255,0.2);
-    background-position: -10rem -10rem; /* change the direction of the change here */
+    background-position: -6.25rem 0; /* change the direction of the change here */
     color: #fff;
     cursor: pointer;
     div {
       display: flex;
     }
   }
-  
+  z-index: 100;
+
   ${props => props.setAlign === true ?
     `
     align-self: flex-start;
     position: sticky;
-    top: 0;
-    z-index: 2;
+    top: 1rem;
+    z-index: 99;
     `:''
   }
   ${props => props.setJustify === true ?
@@ -53,7 +53,7 @@ export const ButtonDropdown = styled.div`
   z-index: 100;
   position: absolute;
   left: 2rem;
-  top: 2rem;
+  top: 1rem;
   overflow-y: scroll;
   background-color: #f9f9f9;
   min-width: 455px;

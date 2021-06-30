@@ -6,8 +6,7 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledTitle = styled.h1`
-  font-size: 32px;
-  padding-top: 1rem;
+  font-size: 20px;
   text-transform: uppercase;
   span{
     background: ${Theme.gradients.primary};
@@ -23,4 +22,11 @@ export const LoginButton = styled.a`
   right: 1rem;
   font-size: ${Theme.fonts.button};
   text-transform: uppercase;
+`;
+
+export const Logo = styled.section`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
