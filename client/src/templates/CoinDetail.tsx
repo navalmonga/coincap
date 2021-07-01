@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { GlassPane, VisXChart } from '../organisms';
 import { CoinChart } from '../components';
 import { StyledTitle } from '../organisms/GlassPane/style';
 import CoinGecko from '../apis/CoinGecko';
+import coinImgMap from '../constants/coinImg';
 const localTZ = Intl.DateTimeFormat().resolvedOptions().timeZone
 
 export interface CDRouteParams {
   symbol: string;
 }
+const CoinLogo = styled.img`
+  width: 72px;
+  height: 72px;
+  margin-bottom: 1rem;
+`
+
 
 const CoinDetail = () => {
   const { symbol } = useParams<CDRouteParams>();
@@ -83,6 +91,7 @@ const CoinDetail = () => {
 
   return (
     <GlassPane width="90vw" height="59.5vh" title={`${localTZ} ${time}`} footer={`© ${new Date().getFullYear()} naval monga`}>
+      <CoinLogo src={coinImgMap.get(symbol)} alt={`${symbol} logo`} />
       <StyledTitle fontSize={36}><span>{symbol}</span></StyledTitle>
       {!!loading && <div>Loading...</div>}
       {!!!loading && (

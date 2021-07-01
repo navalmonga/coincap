@@ -30,6 +30,7 @@ export const ItemTicker = styled.h6<{ delta: boolean }>`
   }
   .hChange {
     font-size: 23px;
+    margin-top: -1.5rem;
   }
   .last24{
     color: #fff;
@@ -46,7 +47,7 @@ export const ItemTicker = styled.h6<{ delta: boolean }>`
 `;
 
 export const ItemTitle = styled.h6`
-  font-size: 8px;
+  font-size: 1rem;
   font-weight: 400;
   flex: 0.8;
   display: flex;
@@ -55,18 +56,20 @@ export const ItemTitle = styled.h6`
   margin: 0 1rem;
   h3 {
     letter-spacing: 0.13rem;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 700;
     z-index: 2;
+    margin-left: 1rem;
   }
   .coinLogo {
-    max-height: 28px;
-    width: 28px;
+    max-height: 36px;
+    width: 36px;
     flex: 0.2;
     object-fit: contain;
-    margin-bottom: -2.25rem;
+    margin-top: 1rem;
+    margin-bottom: -2rem;
     z-index: 1;
-    opacity: 0.55;
+    opacity: 0.7;
   }
   span {
     font-size: 11px;
@@ -74,17 +77,23 @@ export const ItemTitle = styled.h6`
     font-weight: 400;
   }
   div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     p {
-      font-size: 17px;
+      font-size: 19px;
+      font-weight: 700;
+      flex: 0.5;
     }
     span {
-      font-size: 8px;
+      flex: 0.5;
+      font-size: 11px;
     }
   }
 `;
 
 export const MarketCap = styled.p`
-  font-size: 11px;
+  font-size: 15px;
   text-transform: uppercase;
   flex: 0.5;
 `;

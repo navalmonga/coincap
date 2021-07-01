@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <WatchListContextProvider>
         <BrowserRouter>
-          <Header title="coin price" />
+          <Header title="coin cap" />
           <Route exact path="/" component={CoinSummary} />
           <Route path="/coin/:symbol" component={CoinDetail} />
         </BrowserRouter>

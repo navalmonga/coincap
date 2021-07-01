@@ -57,7 +57,7 @@ export const ButtonDropdown = styled.div`
   overflow-y: scroll;
   background-color: #f9f9f9;
   min-width: 455px;
-  max-height: 8rem;
+  max-height: 16rem;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-radius: 0.25rem;
   flex-direction: column;
