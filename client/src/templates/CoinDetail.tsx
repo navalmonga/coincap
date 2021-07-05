@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { GlassPane, VisXChart } from '../organisms';
-import { CoinChart } from '../components';
+// import { CoinChart } from '../components';
 import { StyledTitle } from '../organisms/GlassPane/style';
 import CoinGecko from '../apis/CoinGecko';
 import coinImgMap from '../constants/coinImg';
@@ -13,9 +13,20 @@ export interface CDRouteParams {
   symbol: string;
 }
 const CoinLogo = styled.img`
-  width: 72px;
-  height: 72px;
-  margin-bottom: 1rem;
+  height: 35px;
+  width: 35px;
+`
+
+const Icon = styled.div`
+  min-height: 72px;
+  max-height: 72px;
+  min-width: 72px;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+  border-radius: 1rem;
 `
 
 
@@ -87,11 +98,13 @@ const CoinDetail = () => {
     };
 
     fetchData();
-  }, []);
+  }, [symbol]);
 
   return (
     <GlassPane width="90vw" height="59.5vh" title={`${localTZ} ${time}`} footer={`© ${new Date().getFullYear()} naval monga`}>
-      <CoinLogo src={coinImgMap.get(symbol)} alt={`${symbol} logo`} />
+      <Icon>
+        <CoinLogo src={coinImgMap.get(symbol)} alt={`${symbol} logo`} />
+      </Icon>
       <StyledTitle fontSize={36}><span>{symbol}</span></StyledTitle>
       {!!loading && <div>Loading...</div>}
       {!!!loading && (

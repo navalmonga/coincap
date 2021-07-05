@@ -2,7 +2,7 @@ import { BaseTheme } from "./base-theme";
 
 const Theme: BaseTheme = {
   layout: {
-    backgroundColor: `#151325`,
+    backgroundColor: `#0E0E10`,
     primaryColor: `#ffffff`,
     linkColor: `#5E42D6`,
   },
@@ -18,7 +18,7 @@ const Theme: BaseTheme = {
     button: '0.8rem',
   },
   gradients: {
-    primary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    primary: 'linear-gradient(135deg, #204051 0%, #3b6978 100%)',
     primaryTransparent: 'linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(17,17,17,0.5) 100%)'
   },
   palette: {

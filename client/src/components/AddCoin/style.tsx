@@ -1,23 +1,31 @@
 import styled from 'styled-components';
 import Theme from '../../styles/theme';
 
+const cardBoxShadow = `
+0 2.8px 2.2px rgba(255, 255, 255, 0.034),
+0 6.7px 5.3px rgba(255, 255, 255, 0.048),
+0 12.5px 10px rgba(255, 255, 255, 0.06),
+0 22.3px 17.9px rgba(255, 255, 255, 0.072),
+0 41.8px 33.4px rgba(255, 255, 255, 0.086),
+0 100px 80px rgba(255, 255, 255, 0.12)
+`;
+
 export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 0.3rem 0.75rem;
   font-family: ${Theme.fonts.base};
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: ${Theme.gradients.primary};
   background-repeat: repeat;
   color: ${Theme.layout.primaryColor};
   transition: all 0.18s linear;
-  border-radius: 4rem;
+  border-radius: 0.33rem;
   &:hover {
-    // box-shadow: inset 0 0 20px rgba(255,255,255,0.2);
+    -webkit-box-shadow: ${cardBoxShadow};
+    -moz-box-shadow: ${cardBoxShadow};
+    box-shadow: ${cardBoxShadow};
     background-position: -6.25rem 0; /* change the direction of the change here */
     color: #fff;
     cursor: pointer;
@@ -25,7 +33,6 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
       display: flex;
     }
   }
-  z-index: 100;
 
   ${props => props.setAlign === true ?
     `
@@ -38,9 +45,8 @@ export const StyledButton = styled.a<{ setAlign?: boolean, setJustify?: boolean 
   ${props => props.setJustify === true ?
     `
     background: none;
-    background-color: ${Theme.layout.primaryColor};
+    background-color: #f6f6f6;
     color: #111111;
-    margin-left: auto;
     &:hover {
       color: #111111;
     }

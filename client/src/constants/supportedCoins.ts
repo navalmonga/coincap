@@ -3,7 +3,6 @@ const supportedCoins = [
   {code: 'BTC', name: 'bitcoin'},
   {code: 'BCH', name: 'bitcoin-cash'},
   {code: 'BNB', name: 'binancecoin'},
-  {code: 'BSV', name: 'bitcoin-sv'},
   {code: 'DOGE', name: 'dogecoin'},
   {code: 'ETH', name: 'ethereum'},
   {code: 'ETC', name: 'ethereum-classic'},

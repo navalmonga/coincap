@@ -3,7 +3,6 @@ const coinImgMap = new Map([
   ['bitcoin', 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg'],
   ['bitcoin-cash', 'https://cryptologos.cc/logos/bitcoin-cash-bch-logo.svg'],
   ['binancecoin', 'https://cryptologos.cc/logos/binance-coin-bnb-logo.svg'],
-  ['bitcoin-sv', 'https://cryptologos.cc/logos/bitcoin-sv-bsv-logo.svg'],
   ['dogecoin', 'https://cryptologos.cc/logos/dogecoin-doge-logo.svg'],
   ['ethereum', 'https://cryptologos.cc/logos/ethereum-eth-logo.svg'],
   ['ethereum-classic', 'https://cryptologos.cc/logos/ethereum-classic-etc-logo.svg'],

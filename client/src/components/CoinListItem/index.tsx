@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
 import { StyledItem, ItemTicker, ItemTitle, MarketCap, DeleteIcon, VisContainer } from './style';
 import { StyledButton } from '../AddCoin/style';
 import { WatchListContext } from '../../contexts/watchListContext';
@@ -52,6 +53,29 @@ const abbreviate_number = (num: any, fixed: any) => {
   return e;
 }
 
+const cardBoxShadow = `
+0 2.8px 2.2px rgba(255, 255, 255, 0.034),
+0 6.7px 5.3px rgba(255, 255, 255, 0.048),
+0 12.5px 10px rgba(255, 255, 255, 0.06),
+0 22.3px 17.9px rgba(255, 255, 255, 0.072),
+0 41.8px 33.4px rgba(255, 255, 255, 0.086),
+0 100px 80px rgba(255, 255, 255, 0.12)
+`;
+
+const Icon = styled.div`
+  min-height: 36px;
+  max-height: 36px;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  background-color: #d9d9d9;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: ${cardBoxShadow};
+  -moz-box-shadow: ${cardBoxShadow};
+  box-shadow: ${cardBoxShadow};
+`
+
 const CoinListItem = (props: ListItemProps) => {
   const { item, name, symbol, currency } = props;
   const { deleteCoin } = useContext(WatchListContext);
@@ -91,66 +115,67 @@ const CoinListItem = (props: ListItemProps) => {
     };
 
     fetchData();
-  }, []);
+  }, [symbol]);
 
 
 
   return (
-    <StyledItem to={`/coin/${symbol}`}>
+    <StyledItem>
       <ItemTicker delta={item? item.usd_24h_change >= 0: false}>
         <span className="symbol">
-          {symbolMap.get(name) ?? '---'}
-          <ItemTitle>
+          <Icon>
             <img className="coinLogo" src={coinImgMap.get(name.toLowerCase()) ?? 'https://cryptologos.cc/logos/bitcoin-btc-logo.svg'} alt={name ?? 'loading...'} />
-            <h3>{name.toUpperCase() ?? 'LOADING...'}</h3>
-          </ItemTitle>
-        </span>&nbsp;  
-        <br/><br/>
+            <StyledButton className="grow" setJustify={true} href={homepageMap.get(name.toLowerCase())} target="_blank" rel="noopener noreferrer">whitepaper&nbsp;&#x2197;</StyledButton>
+          </Icon>
+          {/* <h3>{name.toUpperCase() ?? 'LOADING...'}</h3> */}
+        </span>
         <span className="hChange">
+          {symbolMap.get(name) ?? '---'}&nbsp;
           <span>{String(item? item.usd_24h_change.toFixed(2): 0)}%&nbsp;</span>
           {item && item.usd_24h_change.toFixed(2) <= 0 ? <span>&#8601;</span>: <span>&#8599;</span>}
         </span>
-        <br/>
         <span className="last24">
           (LAST 24H)
         </span>
       </ItemTicker>
-      <VisContainer>
-        {!!loading && <div>Loading...</div>}
-        {!!!loading && (
-          <>
-            <div style={{ height: '7rem', width: '100%' }}>
-              <ParentSize>{({ width, height }: any) => 
-                <VisXChart
-                  data={coinData}
-                  width={width}
-                  height={height}
-                />
-              }
-              </ParentSize>
-            </div>
-          </>
-        )}
-      </VisContainer>
+      <>
+        <VisContainer>
+          {!!loading && <div>Loading...</div>}
+          {!!!loading && (
+            <Link to={`/coin/${symbol}`}>
+              <div style={{ height: '7rem', width: '100%' }}>
+                <ParentSize>{({ width, height }: any) => 
+                  <VisXChart
+                    data={coinData}
+                    width={width}
+                    height={height}
+                  />
+                }
+                </ParentSize>
+              </div>
+            </Link>
+          )}
+        </VisContainer>
+      </>
       <ItemTitle>
         <div>
-          <p>{currency.symbol}{item? item.usd.toFixed(2): 0}</p>
+          <p>{currency.symbol}{item? item.usd.toFixed(3): 0}</p>
           <span>updated&nbsp;{moment.unix(item? item.last_updated_at: undefined).fromNow()}</span>
         </div>
       </ItemTitle>
       <MarketCap>
-        market cap<br/>
-        {currency.symbol}{item? abbreviate_number(item.usd_market_cap, 0) ?? '---': ''}<br/>
-        <hr/>
-        volume (24h)<br/>
-        {currency.symbol}{item? abbreviate_number(item.usd_24h_vol, 0) ?? '---': ''}
+        <h4>market cap</h4>
+        <span>{currency.symbol}{item? abbreviate_number(item.usd_market_cap, 0) ?? '---': ''}</span>
+        <br/>
+        <br/>
+        <h4>volume (24h)</h4>
+        <span>{currency.symbol}{item? abbreviate_number(item.usd_24h_vol, 0) ?? '---': ''}</span>
       </MarketCap>
       {/* <MarketCap>
         market cap:&nbsp;{abbreviate_number(item.market_cap, 0)}<br/>
         circulation:&nbsp;{abbreviate_number(item.circulating_supply, 0)}<br/>
         max supply:&nbsp;{item.max_supply?abbreviate_number(item.max_supply, 0):'n/a'}
       </MarketCap> */}
-      <StyledButton className="grow" setJustify={true} href={homepageMap.get(name.toLowerCase())} target="_blank" rel="noopener noreferrer">whitepaper&nbsp;&#x2197;</StyledButton>
       <DeleteIcon
         onClick={(e) => {
           e.preventDefault();
